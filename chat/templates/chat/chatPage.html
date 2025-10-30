@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat Room</title>
+<style>
+/* ==========================================================
+   🌌 ULTRA PREMIUM GLASS CHAT UI — by GPT-5
+   ========================================================== */
+
+/* ---------- Root Theme Colors ---------- */
+:root {
+  --bg-color: radial-gradient(circle at 20% 30%, #0a0f1f, #020617);
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --accent: #38bdf8;
+  --accent-glow: rgba(56, 189, 248, 0.45);
+  --danger: #f87171;
+  --text: #e2e8f0;
+  --shadow: 0 0 28px rgba(56, 189, 248, 0.15);
+}
+
+/* ---------- Body ---------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg-color);
+  overflow-x: hidden;
+}
+
+/* ---------- Header ---------- */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(56,189,248,0.12), rgba(255,255,255,0.06));
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 12px rgba(56,189,248,0.4);
+}
+
+/* ---------- Logout Button ---------- */
+.logout-btn {
+  font-size: 15px;
+  background: var(--danger);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 14px rgba(248, 113, 113, 0.4);
+}
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 20px rgba(248, 113, 113, 0.7);
+}
+
+/* ---------- Chat Container ---------- */
+.chat-container {
+  max-width: 680px;
+  margin: 3.5rem auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Accent border glow */
+.chat-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(56,189,248,0.3), rgba(255,255,255,0.05));
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------- Messages ---------- */
+.messages {
+  min-height: 360px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) rgba(255,255,255,0.05);
+}
+.messages::-webkit-scrollbar {
+  width: 6px;
+}
+.messages::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 4px;
+}
+
+/* ---------- Message Bubbles ---------- */
+.message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  max-width: 78%;
+  word-wrap: break-word;
+  animation: fadeIn 0.25s ease-in-out;
+  box-shadow: 0 0 12px rgba(255,255,255,0.05);
+}
+
+.message.me {
+  background: linear-gradient(135deg, rgba(56,189,248,0.4), rgba(56,189,248,0.15));
+  color: #fff;
+  float: right;
+  clear: both;
+}
+
+.message.other {
+  background: rgba(255,255,255,0.1);
+  float: left;
+  clear: both;
+  color: #e2e8f0;
+}
+
+/* ---------- Fade In ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Input Row ---------- */
+.input-row {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+input[type="text"]:focus {
+  box-shadow: 0 0 16px var(--accent-glow);
+  background: rgba(255,255,255,0.14);
+}
+
+button {
+  background: linear-gradient(135deg, var(--accent), #0ea5e9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.8rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+button:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 22px rgba(56,189,248,0.7);
+}
+
+/* ---------- Glow pulse ---------- */
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 10px var(--accent-glow); }
+  50% { box-shadow: 0 0 20px var(--accent-glow); }
+  100% { box-shadow: 0 0 10px var(--accent-glow); }
+}
+button:focus {
+  animation: pulseGlow 1.4s infinite ease-in-out;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .chat-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+  header {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+}
+</style>
+
+
+</head>
+<body>
+
+ <header>
+  <h1>Welcome, {{ request.user.username }} 👋</h1>
+  {% if request.user.is_authenticated %}
+  <form action="{% url 'logout-user' %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+  {% endif %}
+</header>
+
+<div class="chat-container">
+  <div class="messages" id="messages">
+    <!-- Chat messages appear here -->
+  </div>
+
+  <div class="input-row">
+    <input type="text" id="messageInput" placeholder="Type a message..." autocomplete="off">
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+
+  <script>
+  // ✅ Establish WebSocket connection
+  const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+
+  chatSocket.onopen = () => console.log("✅ Connection established!");
+  chatSocket.onclose = () => console.log("⚠️ Connection closed!");
+
+  // ✅ Grab elements by correct IDs
+  const input = document.getElementById("messageInput");
+  const button = document.getElementById("sendBtn");
+  const container = document.getElementById("messages");
+
+  input.focus();
+
+  // 🔹 Press Enter → send message
+  input.addEventListener("keyup", e => {
+    if (e.key === "Enter") button.click();
+  });
+
+  // 🔹 Click "Send" → send message to WebSocket
+  button.onclick = () => {
+    const message = input.value.trim();
+    if (message.length > 0) {
+      chatSocket.send(JSON.stringify({
+        message: message,
+        username: "{{ request.user.username }}"
+      }));
+      input.value = "";
+    }
+  };
+
+  // 🔹 Receive message → show in chat box
+  chatSocket.onmessage = e => {
+    const data = JSON.parse(e.data);
+    const div = document.createElement("div");
+    div.classList.add("message");
+    div.classList.add(data.username === "{{ request.user.username }}" ? "me" : "other");
+    div.textContent = `${data.username}: ${data.message}`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+  };
+</script>
+
+</body>
+</html>

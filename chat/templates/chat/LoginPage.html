@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | ChatApp</title>
+  <style>
+    /* 🌈 Background Gradient */
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0ea5e9 100%);
+      font-family: "Poppins", sans-serif;
+      color: #e2e8f0;
+    }
+
+    /* ✨ Glassmorphic Login Box */
+    .login-container {
+      width: 360px;
+      padding: 2.5rem 2rem;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    /* 🧊 Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 🏷️ Header */
+    h1 {
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+      color: #38bdf8;
+      letter-spacing: 1px;
+    }
+
+    /* 🧠 Input Fields */
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin: 0.6rem 0;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    input:focus {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+    }
+
+    /* 💠 Button */
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.5);
+    }
+
+    /* 🪩 Footer link */
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .footer a {
+      color: #38bdf8;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .footer a:hover {
+      color: #0ea5e9;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>🔐 Login to ChatApp</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+    </form>
+    <div class="footer">
+      Don’t have an account?
+      <a href="#">Register</a>
+    </div>
+  </div>
+</body>
+</html>
